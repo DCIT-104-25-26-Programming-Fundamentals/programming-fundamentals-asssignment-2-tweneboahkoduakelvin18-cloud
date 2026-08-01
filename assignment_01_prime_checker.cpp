@@ -31,9 +31,48 @@
 //
 
 // =============================================================================
-// YOUR CODE BELOW — remove the // symbols from the scaffold and fill it in
-// =============================================================================
+//— remove the // symbols from the scaffold and fill it in
+
 
 #include <iostream>
 using namespace std;
+#include <iostream>
+using namespace std; 
 
+bool is_prime(int n) {
+    if (n <= 1)
+        return false;
+    if (n <= 3)
+        return true;
+    if (n % 2 == 0 || n % 3 == 0)
+        return false;
+
+    int i = 5;
+    while (i * i <= n) {
+        if (n % i == 0 || n % (i + 2) == 0)
+            return false;
+        i += 6;
+    }
+
+    return true;
+}
+
+int main() {
+    int num;
+
+    cout << "Enter a number: ";
+
+    if (!(cin >> num)|| cin.peek() != '\n') {
+        cout << "Please enter a valid integer." << endl;
+        return 1;
+    }
+
+    if (is_prime(num))
+        cout << num << " is prime." << endl;
+    else
+        cout << num << " is not prime." << endl;
+
+    return 0;
+}
+
+// =============================================================================
