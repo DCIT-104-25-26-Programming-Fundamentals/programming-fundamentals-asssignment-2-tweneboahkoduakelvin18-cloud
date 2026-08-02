@@ -56,4 +56,71 @@
 
 #include <iostream>
 using namespace std;
+// Function to validate positive integers only
+bool isValidPositiveInteger(double num)
+{
+    return (num > 0 && num == static_cast<int>(num));
+}
 
+// Part A: Print multiplication table for a single number
+void singleTable(int num)
+{
+    cout << "\nMultiplication Table for " << num << ":\n";
+
+    for (int i = 1; i <= 12; i++)
+    {
+        cout << num << " x " << i << " = " << num * i << endl;
+    }
+}
+
+// Part B: Print multiplication tables from 1 to N
+void tablesFromOneToN(int N)
+{
+    for (int num = 1; num <= N; num++)
+    {
+        cout << "\nMultiplication Table for " << num << ":\n";
+
+        for (int i = 1; i <= 12; i++)
+        {
+            cout << num << " x " << i << " = " << num * i << endl;
+        }
+
+        cout << "---------------------------" << endl;
+    }
+}
+
+int main()
+{
+    double input;
+    int number, N;
+
+    // Part A
+    cout << "PART A - Single Multiplication Table" << endl;
+    cout << "Enter a positive integer: ";
+    cin >> input;
+
+    if (!isValidPositiveInteger(input))
+    {
+        cout << "Error: Input must be a positive integer." << endl;
+        return 0;
+    }
+
+    number = static_cast<int>(input);
+    singleTable(number);
+
+    // Part B
+    cout << "\nPART B - Tables from 1 to N" << endl;
+    cout << "Enter a positive integer N: ";
+    cin >> input;
+
+    if (!isValidPositiveInteger(input))
+    {
+        cout << "Error: Input must be a positive integer." <<endl;
+        return 0;
+    }
+
+    N = static_cast<int>(input);
+    tablesFromOneToN(N);
+
+    return 0;
+}
