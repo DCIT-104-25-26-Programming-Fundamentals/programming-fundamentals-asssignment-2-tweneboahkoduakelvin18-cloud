@@ -67,7 +67,7 @@ void printFibonacci(int n) {
 // PART B: Check if a number is a Fibonacci number
 void checkFibonacci(int num) {
     if (num < 0) {
-        cout << num << " is NOT a Fibonacci number." << endl;
+        cout << "Error: Fibonacci numbers cannot be negative." << endl;
         return;
     }
 
@@ -81,18 +81,29 @@ void checkFibonacci(int num) {
 
     if (first == num) {
         cout << num << " is a Fibonacci number." << endl;
-    } else {
+    }
+    else {
         cout << num << " is NOT a Fibonacci number." << endl;
     }
 }
 
 int main() {
+    string input;
     int n, num;
 
     cout << "How many terms? ";
-    cin >> n;
+    cin >> input;
 
-    if (cin.fail()) {
+    // Check for wrong input and floats
+    try {
+        n = stoi(input);
+
+        if (input.find('.') != string::npos) {
+            cout << "Error: Please enter a valid integer, not a decimal." << endl;
+            return 1;
+        }
+    }
+    catch (...) {
         cout << "Error: Please enter a valid integer." << endl;
         return 1;
     }
@@ -104,10 +115,20 @@ int main() {
 
     printFibonacci(n);
 
-    cout << "\nEnter a number to check: ";
-    cin >> num;
 
-    if (cin.fail()) {
+    cout << "\nEnter a number to check: ";
+    cin >> input;
+
+    // Check for wrong input and floats
+    try {
+        num = stoi(input);
+
+        if (input.find('.') != string::npos) {
+            cout << "Error: Please enter a valid integer, not a decimal." << endl;
+            return 1;
+        }
+    }
+    catch (...) {
         cout << "Error: Please enter a valid integer." << endl;
         return 1;
     }
