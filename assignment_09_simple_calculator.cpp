@@ -65,11 +65,230 @@
 //
 
 // =============================================================================
-// YOUR CODE BELOW — remove the // symbols from the scaffold and fill it in
-// =============================================================================
-
 #include <iostream>
 #include <iomanip>
 #include <cmath>
+#include <vector>
 using namespace std;
+// Addition
+double add(vector<double> numbers)
+{
+    double result = 0;
+    for (double num : numbers)
+        result += num;
+
+    return result;
+}
+
+// Subtraction
+double subtract(vector<double> numbers)
+{
+    double result = numbers[0];
+
+    for (int i = 1; i < numbers.size(); i++)
+        result -= numbers[i];
+
+    return result;
+}
+
+// Multiplication
+double multiply(vector<double> numbers)
+{
+    double result = 1;
+
+    for (double num : numbers)
+        result *= num;
+
+    return result;
+}
+
+// Division
+double divide(vector<double> numbers)
+{
+    double result = numbers[0];
+
+    for (int i = 1; i < numbers.size(); i++)
+        result /= numbers[i];
+
+    return result;
+}
+
+// Modulus
+int modulusOperation(const vector<int>& numbers)
+{
+    int result = numbers[0];
+
+    for (int i = 1; i < numbers.size(); i++)
+        result %= numbers[i];
+
+    return result;
+}
+
+// Exponentiation
+double exponentiation(vector<double> numbers)
+{
+    double result = numbers[0];
+
+    for (int i = 1; i < numbers.size(); i++)
+        result = pow(result, numbers[i]);
+
+    return result;
+}
+
+
+int main()
+{
+    int choice;
+    int count;
+
+    do
+    {
+        cout << "\n============================" << endl;
+        cout << "      SIMPLE CALCULATOR" << endl;
+        cout << "============================" << endl;
+        cout << "1. Addition" << endl;
+        cout << "2. Subtraction" << endl;
+        cout << "3. Multiplication" << endl;
+        cout << "4. Division" << endl;
+        cout << "5. Modulus" << endl;
+        cout << "6. Exponentiation" << endl;
+        cout << "7. Quit" << endl;
+        cout << "Select an operation (1-7): ";
+
+        cin >> choice;
+
+
+        // Check invalid menu input
+        if (cin.fail())
+        {
+            cin.clear();
+            cin.ignore(1000, '\n');
+            cout << "Error: Please enter a number from 1 to 7." << endl;
+            continue;
+        }
+
+
+        if (choice == 7)
+        {
+            cout << "Goodbye!" << endl;
+            break;
+        }
+
+
+        if (choice < 1 || choice > 7)
+        {
+            cout << "Error: Invalid choice. Select between 1 and 7." << endl;
+            continue;
+        }
+
+
+        cout << "How many numbers do you want to enter? ";
+        cin >> count;
+
+
+        if (cin.fail() || count < 2)
+        {
+            cin.clear();
+            cin.ignore(1000, '\n');
+            cout << "Error: Enter at least two valid numbers." << endl;
+            continue;
+        }
+
+
+        vector<double> numbers(count);
+
+
+        for (int i = 0; i < count; i++)
+        {
+            cout << "Enter number " << i + 1 << ": ";
+            cin >> numbers[i];
+
+
+            if (cin.fail())
+            {
+                cin.clear();
+                cin.ignore(1000, '\n');
+                cout << "Error: Please enter valid numbers only." << endl;
+                break;
+            }
+        }
+
+
+        cout << fixed << setprecision(2);
+
+
+        switch(choice)
+        {
+            case 1:
+                cout << "Result: " << add(numbers) << endl;
+                break;
+
+
+            case 2:
+                cout << "Result: " << subtract(numbers) << endl;
+                break;
+
+
+            case 3:
+                cout << "Result: " << multiply(numbers) << endl;
+                break;
+
+
+            case 4:
+            {
+                bool zero = false;
+
+                for(int i = 1; i < numbers.size(); i++)
+                {
+                    if(numbers[i] == 0)
+                        zero = true;
+                }
+
+                if(zero)
+                    cout << "Error: Cannot divide by zero." << endl;
+                else
+                    cout << "Result: " << divide(numbers) << endl;
+
+                break;
+            }
+
+
+            case 5:
+            {
+                vector<int> intNumbers;
+
+                for(double n : numbers)
+                    intNumbers.push_back(static_cast<int>(n));
+
+
+                bool zero = false;
+
+                for(int i = 1; i < intNumbers.size(); i++)
+                {
+                    if(intNumbers[i] == 0)
+                        zero = true;
+                }
+
+
+                if(zero)
+                    cout << "Error: Cannot perform modulus by zero." << endl;
+                else
+                    cout << "Result: " << modulusOperation(intNumbers) << endl;
+
+                break;
+            }
+
+
+            case 6:
+                cout << "Result: " << exponentiation(numbers) << endl;
+                break;
+        }
+
+    } while(true);
+
+
+    return 0;
+}
+
+// =============================================================================
 
